@@ -22,15 +22,15 @@ namespace ChannelApi.Service.Report
 
             if (_temporaryItems.Count > 2)
             {
-                await WriteAsync();
+                await WriteAsync().ConfigureAwait(false);
             }
         }
 
         private async Task WriteAsync()
         {
-            reports.Add(_temporaryItems.ToList());
+            reports.Add([.. _temporaryItems]);
             var content = JsonConvert.SerializeObject(reports);
-            await File.WriteAllTextAsync(AbsolutePath, content);
+            await File.WriteAllTextAsync(AbsolutePath, content).ConfigureAwait(false);
             _temporaryItems.Clear();
         }
     }

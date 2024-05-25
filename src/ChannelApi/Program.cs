@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddTransient<INotification, Notification>();
+builder.Services.AddTransient<IMediaUploader, MediaUploader>();
 builder.Services.AddSingleton<IReport, Report>();
 builder.Services.AddSingleton<IReportChannel, ReportChannel>();
 builder.Services.AddHostedService<ReportConsumer>();
